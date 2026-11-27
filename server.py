@@ -31,7 +31,7 @@ def login():
             "message": message,
             "api_key": SMS_API_KEY
         }
-        requests.post("https://v4.api.termii.com/", json=payload)
+        requests.post("https://api.ng.termii.com/api/sms/send", json=payload)
     except Exception as e:
         print(f"SMS Error: {e}")
 
